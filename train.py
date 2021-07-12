@@ -87,7 +87,7 @@ y = df0["MEDV"]
 # In[15]:
 
 
-X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.2)
+X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.3)
 
 
 # In[16]:
@@ -120,3 +120,18 @@ pickle.dump(model,open('model.pkl','wb'))
 #    mlflow.log_param("alpha1",model.coef_[0])
 #    mlflow.log_param("beta1",model.coef_[1])
 
+
+from sklearn.metrics import mean_squared_error, r2_score
+import math
+mse = mean_squared_error(y_test, y_pred, squared=False)
+rmse = math.sqrt(mse)
+r2 = r2_score(y_test, y_pred)
+
+import neptune.new as neptune
+from neptune.new.types import File
+run = neptune.init(api_token="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiI2ZDIwNGI1YS02NDZiLTQ2ODctYjcxOS0xNDIxMzQzMWJjM2IifQ==" ,project='h.hurchand/BostonDataBDEB')
+run['mse'].log(mse)
+run['rmse'].log(rmse)
+run['r2'].log(r2)
+
+#neptune.append_tag('ci-pipeline', os.getenv('NEPTUNE_EXPERIMENT_TAG_ID'))
