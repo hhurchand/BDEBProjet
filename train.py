@@ -130,8 +130,8 @@ r2 = r2_score(y_test, y_pred)
 import neptune.new as neptune
 from neptune.new.types import File
 run = neptune.init(api_token="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiI2ZDIwNGI1YS02NDZiLTQ2ODctYjcxOS0xNDIxMzQzMWJjM2IifQ==" ,project='h.hurchand/BostonDataBDEB')
+run['mse'].log(mse)
+run['rmse'].log(rmse)
+run['r2'].log(r2)
 
-neptune.log_metric('mse',mse)
-neptune.log_metric('rmse', rmse)
-neptune.log_metric('r2', r2)
 #neptune.append_tag('ci-pipeline', os.getenv('NEPTUNE_EXPERIMENT_TAG_ID'))
