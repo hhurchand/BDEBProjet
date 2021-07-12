@@ -103,7 +103,7 @@ model = reg.fit(X_train,y_train)
 print("y-intercept",model.coef_[0])
 
 with open("metrics.json", 'w') as outfile:
-        json.dump({ "y0": model.coef_[0], outfile)
+        json.dump({ "y0": model.coef_[0]}, outfile)
 # In[18]:
 
 ## UNCOMMENT FOR MLFLOW REPORTING
