@@ -127,7 +127,8 @@ mse = mean_squared_error(y_test, y_pred, squared=False)
 rmse = math.sqrt(mse)
 r2 = r2_score(y_test, y_pred)
 
-import neptune
+import neptune.new as neptune
+from neptune.new.types import File
 run = neptune.init(api_token="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiI2ZDIwNGI1YS02NDZiLTQ2ODctYjcxOS0xNDIxMzQzMWJjM2IifQ==" ,project='h.hurchand/LogBostonData')
 
 neptune.log_metric('mse',mse)
