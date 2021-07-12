@@ -1,4 +1,4 @@
-name: farmers
+name: neptune actions
 
 on: [push]
 
